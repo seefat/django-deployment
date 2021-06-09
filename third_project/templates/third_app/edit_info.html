@@ -1,0 +1,20 @@
+{% extends 'third_app/base.html' %}
+{% block body_block %}
+
+<h4>Edit Information of the person</h4>
+{% if success_text %}
+<div class="alert alert-success">
+  {{success_text}}
+</div>
+{% endif %}
+
+<form method="POST">
+  {{ edit_info.as_p }}
+  {% csrf_token %}
+  <input type="submit" name="submit" value="UPDATE" class="btn btn-success btn-sm">
+
+
+</form>
+<br>
+<a href="{% url "third_app:delete_job" job_id=job_id %}" class="btn btn-danger btn-sm" onclick="return confirm('Delete the info')">DELETE</a>
+{% endblock %}

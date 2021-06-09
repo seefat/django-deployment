@@ -1,0 +1,29 @@
+
+{% extends 'third_app/base.html' %}
+
+{% block body_block %}
+
+<h2>Welcome to Job Information </h2>
+<h4>Artist Name: {{ people_info.first_name }} {{ people_info.last_name }}'s Job information</h4>
+<h4>He is {{people_info.profession}}</h4>
+<h4>His ratting is {{rat_avg.performance__avg}}</h4>
+<a href="{% url 'third_app:edit_job' people_list_id=people_info.id %}" class=" btn btn-success">Edit</a>
+<br>
+<table class="table table-bordered"
+  <tr>
+    <th>Organization Name </th>
+    <th>Joining Date</th>
+    <th>Ratting</th>
+  </tr>
+  {% for job in job_info %}
+  <tr>
+
+    <td><a href="{% url 'third_app:edit_info' job_id=job.id %}">{{job.name}}</a></td>
+    <td>{{job.joine_date}}</td>
+    <td>{{job.performance}}</td>
+
+  </tr>
+  {% endfor %}
+</table>
+<a href="{% url 'third_app:delete_people' people_list_id=people_info.id %}" onclick="return confirm('Delete his all info?')" class="btn btn-danger btn-sm"> DELETE </a>
+{% endblock %}
